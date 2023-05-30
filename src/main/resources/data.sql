@@ -1,29 +1,75 @@
-INSERT INTO PASSAGEIROS (CPF, NOME, DATA_NASCIMENTO, CLASSIFICACAO, MILHAS)
-VALUES('000.000.000-00', 'Rachel Green', '1969-01-11', 'VIP', 100);
+-- Passageiros
+INSERT INTO PASSAGEIROS (CPF, NOME, DATA_NASCIMENTO, CLASSIFICACAO, MILHAS) VALUES
+('000.000.000-00', 'Rachel Green', '1969-01-11', 'VIP', 100),
+('111.111.111-11', 'Phoebe Buffay', '1963-07-30', 'OURO', 100),
+('222.222.222-22', 'Ross Geller', '1966-11-02', 'PRATA', 100),
+('333.333.333-33', 'Monica Geller', '1964-06-15', 'OURO', 100),
+('444.444.444-44', 'Chandler Bing', '1969-08-19', 'OURO', 100),
+('555.555.555-55', 'Joey Tribbiani', '1967-07-25', 'BRONZE', 100),
+('666.666.666-66', 'Mike Hannigan', '1969-04-06', 'VIP', 100),
+('777.777.777-77', 'Gunther Tyler', '1962-05-28', 'ASSOCIADO', 100),
+('888.888.888-88', 'Janice Wheeler', '1961-08-07', 'BRONZE', 75),
+('999.999.999-99', 'Richard Burke', '1945-01-29', 'BRONZE', 50);
 
-INSERT INTO PASSAGEIROS (CPF, NOME, DATA_NASCIMENTO, CLASSIFICACAO, MILHAS)
-VALUES('111.111.111-11', 'Phoebe Buffay', '1963-07-30', 'OURO', 100);
-
-INSERT INTO PASSAGEIROS (CPF, NOME, DATA_NASCIMENTO, CLASSIFICACAO, MILHAS)
-VALUES('222.222.222-22', 'Ross Geller', '1966-11-02', 'PRATA', 100);
-
-INSERT INTO PASSAGEIROS (CPF, NOME, DATA_NASCIMENTO, CLASSIFICACAO, MILHAS)
-VALUES('333.333.333-33', 'Monica Geller', '1964-06-15', 'OURO', 100);
-
-INSERT INTO PASSAGEIROS (CPF, NOME, DATA_NASCIMENTO, CLASSIFICACAO, MILHAS)
-VALUES('444.444.444-44', 'Chandler Bing', '1969-08-19', 'OURO', 100);
-
-INSERT INTO PASSAGEIROS (CPF, NOME, DATA_NASCIMENTO, CLASSIFICACAO, MILHAS)
-VALUES('555.555.555-55', 'Joey Tribbiani', '1967-07-25', 'BRONZE', 100);
-
-INSERT INTO PASSAGEIROS (CPF, NOME, DATA_NASCIMENTO, CLASSIFICACAO, MILHAS)
-VALUES('666.666.666-66', 'Mike Hannigan', '1969-04-06', 'VIP', 100);
-
-INSERT INTO PASSAGEIROS (CPF, NOME, DATA_NASCIMENTO, CLASSIFICACAO, MILHAS)
-VALUES('777.777.777-77', 'Gunther Tyler', '1962-05-28', 'ASSOCIADO', 100);
-
-INSERT INTO PASSAGEIROS (CPF, NOME, DATA_NASCIMENTO, CLASSIFICACAO, MILHAS)
-VALUES('888.888.888-88', 'Janice Wheeler', '1961-08-07', 'BRONZE', 75);
-
-INSERT INTO PASSAGEIROS (CPF, NOME, DATA_NASCIMENTO, CLASSIFICACAO, MILHAS)
-VALUES('999.999.999-99', 'Richard Burke', '1945-01-29', 'BRONZE', 50);
+-- Assentos
+INSERT INTO ASSENTOS (NOME, DISPONIVEL, EMERGENCIA) VALUES
+('1A', true, false),
+('1B', true, false),
+('1C', true, false),
+('1D', true, false),
+('1E', true, false),
+('1F', true, false),
+('2A', true, false),
+('2B', true, false),
+('2C', true, false),
+('2D', true, false),
+('2E', true, false),
+('2F', true, false),
+('3A', true, false),
+('3B', true, false),
+('3C', true, false),
+('3D', true, false),
+('3E', true, false),
+('3F', true, false),
+('4A', true, false),
+('4B', true, false),
+('4C', true, false),
+('4D', true, false),
+('4E', true, false),
+('4F', true, false),
+('5A', true, true),
+('5B', true, true),
+('5C', true, true),
+('5D', true, true),
+('5E', true, true),
+('5F', true, true),
+('6A', true, true),
+('6B', true, true),
+('6C', true, true),
+('6D', true, true),
+('6E', true, true),
+('6F', true, true),
+('7A', true, false),
+('7B', true, false),
+('7C', true, false),
+('7D', true, false),
+('7E', true, false),
+('7F', true, false),
+('8A', true, false),
+('8B', true, false),
+('8C', true, false),
+('8D', true, false),
+('8E', true, false),
+('8F', true, false),
+('9A', true, false),
+('9B', true, false),
+('9C', true, false),
+('9D', true, false),
+('9E', true, false),
+('9F', true, false),
+('10A', true, false),
+('10B', true, false),
+('10C', true, false),
+('10D', true, false),
+('10E', true, false),
+('10F', true, false);
