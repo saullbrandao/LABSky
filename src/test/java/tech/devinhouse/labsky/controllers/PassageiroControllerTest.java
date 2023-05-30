@@ -1,6 +1,7 @@
 package tech.devinhouse.labsky.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +12,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import tech.devinhouse.labsky.dtos.PassageiroResponseDTO;
+import tech.devinhouse.labsky.dtos.PassageiroCompletoResponseDto;
+import tech.devinhouse.labsky.dtos.PassageiroResponseDto;
 import tech.devinhouse.labsky.mappers.PassageiroMapper;
 import tech.devinhouse.labsky.models.Passageiro;
 import tech.devinhouse.labsky.services.PassageiroService;
@@ -45,9 +47,9 @@ class PassageiroControllerTest {
                 Passageiro.builder().cpf("111.111.111-11").classificacao(ClassificacaoPassageiro.ASSOCIADO).nome("John Doe").milhas(100).dataNascimento(LocalDate.of(1970, 1, 10)).build(),
                 Passageiro.builder().cpf("222.222.222-22").classificacao(ClassificacaoPassageiro.VIP).nome("Jane Doe").milhas(110).dataNascimento(LocalDate.of(1975, 5, 20)).build()
         );
-        List<PassageiroResponseDTO> passageirosDTO = List.of(
-                new PassageiroResponseDTO("111.111.111-11", "John Doe", LocalDate.of(1970, 1, 10), ClassificacaoPassageiro.ASSOCIADO, 100, null, null, null),
-                new PassageiroResponseDTO("222.222.222-22", "Jane Doe", LocalDate.of(1975, 5, 20), ClassificacaoPassageiro.VIP, 110, null, null, null)
+        List<PassageiroCompletoResponseDto> passageirosDTO = List.of(
+                new PassageiroCompletoResponseDto("111.111.111-11", "John Doe", LocalDate.of(1970, 1, 10), ClassificacaoPassageiro.ASSOCIADO, 100, null, null, null),
+                new PassageiroCompletoResponseDto("222.222.222-22", "Jane Doe", LocalDate.of(1975, 5, 20), ClassificacaoPassageiro.VIP, 110, null, null, null)
         );
 
 
@@ -68,4 +70,29 @@ class PassageiroControllerTest {
                 .andExpect(jsonPath("$", is(empty())));
     }
 
+
+    @Test
+    @DisplayName("Quando houver passageiro cadastrado com o cpf informado, deve retornar o passageiro")
+    void findByCpf() throws Exception {
+        Passageiro passageiro = Passageiro.builder().cpf("111.111.111-11").classificacao(ClassificacaoPassageiro.ASSOCIADO).nome("John Doe").milhas(100).dataNascimento(LocalDate.of(1970, 1, 10)).build();
+        PassageiroResponseDto passageiroResponse = new PassageiroResponseDto("111.111.111-11", "John Doe", LocalDate.of(1970, 1, 10), ClassificacaoPassageiro.ASSOCIADO, 100);
+
+        Mockito.when(passageiroService.findByCpf(Mockito.anyString())).thenReturn(passageiro);
+        Mockito.when(passageiroMapper.map(passageiro)).thenReturn(passageiroResponse);
+
+        mockMvc.perform(get("/passageiros/{cpf}", "111.111.111-11")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.cpf", is(passageiro.getCpf())));
+    }
+
+    @Test
+    @DisplayName("Quando não houver passageiro cadastrado com o cpf informado, deve retornar status 404")
+    void findByCpf_notFound() throws Exception {
+        Mockito.when(passageiroService.findByCpf(Mockito.anyString())).thenThrow(EntityNotFoundException.class);
+
+        mockMvc.perform(get("/passageiros/{cpf}", "111.111.111-11")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
 }
