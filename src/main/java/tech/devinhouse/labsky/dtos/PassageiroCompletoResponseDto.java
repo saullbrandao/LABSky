@@ -6,7 +6,7 @@ import tech.devinhouse.labsky.utils.ClassificacaoPassageiro;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public record PassageiroResponseDTO(
+public record PassageiroCompletoResponseDto(
         String cpf,
         String nome,
         @JsonFormat(pattern = "dd/MM/yyyy") LocalDate dataNascimento,
