@@ -1,14 +1,14 @@
 package tech.devinhouse.labsky.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import tech.devinhouse.labsky.utils.ClassificacaoPassageiro;
+import tech.devinhouse.labsky.utils.PassengerClassification;
 
 import java.time.LocalDate;
 
-public record PassageiroResponseDto(
+public record PassengerPartialResponseDto(
         String cpf,
         String nome,
         @JsonFormat(pattern = "dd/MM/yyyy") LocalDate dataNascimento,
-        ClassificacaoPassageiro classificacao,
+        PassengerClassification classificacao,
         Integer milhas) {
 }

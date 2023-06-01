@@ -1,24 +1,22 @@
 package tech.devinhouse.labsky.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tech.devinhouse.labsky.utils.ClassificacaoPassageiro;
+import tech.devinhouse.labsky.utils.PassengerClassification;
 
 import java.time.LocalDate;
 
 
-@Entity(name = "passageiros")
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Passageiro {
+public class Passenger {
     @Id
     private String cpf;
 
@@ -27,7 +25,11 @@ public class Passageiro {
     private LocalDate dataNascimento;
 
     @Enumerated(EnumType.STRING)
-    private ClassificacaoPassageiro classificacao;
+    private PassengerClassification classificacao;
 
     private Integer milhas;
+
+    @OneToOne(mappedBy = "passenger", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private CheckIn checkIn;
 }

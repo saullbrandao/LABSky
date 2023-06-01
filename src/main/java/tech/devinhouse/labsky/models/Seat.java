@@ -7,12 +7,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "assentos")
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Assento {
+public class Seat {
     @Id
     private String nome;
 
