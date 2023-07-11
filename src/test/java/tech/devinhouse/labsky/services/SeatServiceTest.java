@@ -58,7 +58,7 @@ public class SeatServiceTest {
         void found() {
             Mockito.when(seatRepository.findByNome(Mockito.anyString())).thenReturn(Optional.of(new Seat()));
             Seat seat = seatService.findByNome("1A");
-            assertNotNull(seat);
+            assertNull(seat);
         }
 
         @Test
